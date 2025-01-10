@@ -1,5 +1,6 @@
 import { View, Text,StyleSheet } from 'react-native'
 import AntDesign from "@expo/vector-icons/AntDesign";
+import { theme } from '../theme';
 type ListProps = {
   id: number
   message: string 
@@ -10,7 +11,9 @@ type ListProps = {
 const List = ({ id, message, isDone,changeStatus,undoStatus }: ListProps) => {
    
   return (
-    <View style={styles.container}>
+    <View style={ [
+      styles.container,
+    ]}>
       <Text
         style={[
           styles.text,
@@ -20,16 +23,28 @@ const List = ({ id, message, isDone,changeStatus,undoStatus }: ListProps) => {
           },
         ]}
       >
-        {message} 
+        {message}
       </Text>
       <Text>
         {isDone ? (
-          <AntDesign name="close" size={24} color="black"  style={{opacity:0.5}} onPress={()=>undoStatus(id)}/>
+          <AntDesign
+            name="close"
+            size={24}
+            color="red"
+            style={{ opacity: 0.5 }}
+            onPress={() => undoStatus(id)}
+          />
         ) : (
-          <AntDesign name="check" size={24} color="black" style={{opacity:1}} onPress={()=>changeStatus(id)}/>
+          <AntDesign
+            name="check"
+            size={24}
+            color="gree"
+            style={{ opacity: 1 }}
+            onPress={() => changeStatus(id)}
+          />
         )}
       </Text>
-    </View> 
+    </View>
   );
 }
 
@@ -43,6 +58,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderBottomColor: "gray",
     borderBottomWidth: 1,
+    backgroundColor: "white",
+
   },
   text: {
     fontSize: 16,
